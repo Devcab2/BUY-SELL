@@ -1,19 +1,27 @@
-Tables: users, books, orders, book_list
+Tables: users, books, favourites, conversations, cart
 
-B GET /users (all users)
+  GET /home
+
 R GET /users/:id  (single user)
-E POST /users/:id
-A POST /users/
-D POST /users/:id/delete
+A POST /users/:id
 
 B GET /books (all books)
 R GET /books/:id  (single book)
-E POST /books/:id
 A POST /books/
 D POST /books/:id/delete
 
-B GET /orders (all orders)
+B GET /users/:id/favourites (all orders)
+A POST /user/:id/favourites
+
+B GET /conversations/:id/messages ???
+R GET /conversations/:id  (single order)
+A POST /conversations
+A POST /converstaions/:id/messages
+
+
+
+//STRETCH MATERIAL
+
 R GET /orders/:id  (single order)
-E POST /orders/:id
 A POST /orders/
 D POST /orders/:id/delete
