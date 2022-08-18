@@ -1,1 +1,9 @@
-convers_id
+DROP TABLE IF EXISTS conversation CASCADE;
+
+CREATE TABLE conversation (
+  id SERIAL PRIMARY KEY NOT NULL,
+  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  book_id INTEGER REFERENCES books(id) ON DELETE CASCADE,
+  msg_id INTEGER REFERENCES messages(id) ON DELETE CASCADE
+);
