@@ -1,14 +1,23 @@
+html{
+  overflow: hidden;
+}
+
+
 body {
-  min-height: 100vh;
-  background: linear-gradient(
-    360deg,
-    rgb(62, 201, 236) 0%,
-    rgb(66, 106, 236) 20%,
-    rgb(216, 213, 0) 34%,
-    rgb(249, 142, 85) 59%,
-    rgb(85, 203, 233) 74%,
-    rgb(67, 194, 226) 100%
-  );
+  background-image: url("https://wallpaperaccess.com/full/340434.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.nav{
+  padding: 0;
+  margin: 0;
+  align-items: stretch;
 }
 
 .pageName{
@@ -27,15 +36,18 @@ padding-left: 2em;
   align-items: center;
   font-size: xx-large;
   border-bottom: 10px black;
+  padding-bottom: 15px;
+
 }
 
 .registerLoginSpan{
   display:flex;
   justify-content: end;
   gap: 15px;
-  padding-right: 10px;
   height: 30px;
-
+  border-bottom: 4px solid black;
+  padding-bottom: 5px;
+  padding-right: 10px;
 }
 
 .advertisement{
@@ -43,7 +55,8 @@ padding-left: 2em;
 align-items: center;
 justify-content: center;
 height: 200px;
-font-size:200%;
+font-size: 300%;
+margin-top: 50px;
 }
 
 .homeNavbar {
@@ -53,17 +66,111 @@ font-size:200%;
 .booklist{
 display: flex;
 gap: 40px;
-justify-content: space-between;
-margin:100px 0 85px 0;
+justify-content: space-evenly;
+padding-top: 80px;
 padding-right: 40px;
+padding-left: 40px;
+margin-top: 0;
+margin-bottom: 0;
+list-style: none;
+}
+
+.bodyContain{
+  padding-top: 50px;
 }
 
 .socialLinks{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 20px;
-  padding-top: 180px;
-  gap: 10px;
+  align-items: center;
+  padding-right: 65px;
+  padding-top: 150px;
+  padding-bottom: 200px;
+  gap: 50px;
   list-style: none;
 }
+
+.button-85 {
+  padding: 0.2em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.booklistItems{
+  display: flex;
+  border: 2px solid black;
+  padding: 5px;
+  width: 200px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  color: linear-gradient(#e66465, #9198e5);
+  img{
+    display: block;
+    margin: 0 auto;
+  }
+}
+
