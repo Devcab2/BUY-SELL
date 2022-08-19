@@ -5,6 +5,7 @@ CREATE TABLE books (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   book_title VARCHAR(255) NOT NULL,
   book_author VARCHAR(255),
+  description VARCHAR(255),
   year_of_publication INTEGER NOT NULL,
   genre VARCHAR(255) NOT NULL,
   rating FLOAT,
