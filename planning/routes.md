@@ -2,26 +2,18 @@ Tables: users, books, favourites, conversations, cart
 
   GET /home
 
-R GET /users/:id  (single user)
-A POST /users/:id
+B GET /login (login page)
+A POST /login (user login)
+A POST /logout (if user logged in)
 
-B GET /books (all books)
-R GET /books/:id  (single book)
-A POST /books/
-D POST /books/:id/delete
+B GET /books (logged in homepage)
+R GET /books/:id_book  (individual book with info about book)
+R GET /books/add (admin add book page)
+A POST /books/add  (submit form with all book data)
+D POST /books/:id_book/delete (admin(seller) only remove book from database)
 
-B GET /users/:id/favourites (all orders)
-A POST /user/:id/favourites
+B GET /users/:id_user/favourites (view all user favourites page)
+A POST /users/:id_user/favourites  (add a book to your favourites)
 
-B GET /conversations/:id/messages ???
-R GET /conversations/:id  (single order)
-A POST /conversations
-A POST /converstaions/:id/messages
-
-
-
-//STRETCH MATERIAL
-
-R GET /orders/:id  (single order)
-A POST /orders/
-D POST /orders/:id/delete
+R GET /conversations/:conversation_id  (access conversations page/ display all messages)
+A POST /conversations (submit a message to the conversation)
