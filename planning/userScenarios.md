@@ -5,4 +5,4 @@ Given I am logged in as a user, when I click message button, then it sends the m
 Given I am logged in as admin, when I add new product information, then it displays on the product page. 
 Given I am logged in as admin,  when I click delete, then it deletes the product from the product page. 
 Given I am logged in as admin, when I click edit, then the item is marked as sold. 
-.Given I am logged in as admin, when I receive a message from a user, then I can respond via the same communication method  
+Given I am logged in as admin, when I receive a message from a user, then I can respond via the same communication method  
