@@ -26,6 +26,20 @@ const getUserEmail = (email) => {
     .catch((err) => console.log(err.message));
 };
 
+// Get all books
+
+const getAllBooks = () => {
+  let dbQuery = `SELECT * FROM books LIMIT 10;`;
+  return pool
+    .query(dbQuery)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
 // Get book data from database by passing in the genre(passing in hardcode genre for each filter tags)
 
 const bookFilters = (genre) => {
@@ -79,8 +93,14 @@ const addNewBooks = (userid, books) => {
       });
   } else console.log(`you can only add books as seller`);
 };
-
+//Add favorite
 //Delete books
 //Single book page info
 
-module.exports = { getUserEmail, bookFilters, bookPriceFilters, addNewBooks };
+module.exports = {
+  getUserEmail,
+  bookFilters,
+  bookPriceFilters,
+  addNewBooks,
+  getAllBooks,
+};
