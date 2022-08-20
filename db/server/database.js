@@ -29,7 +29,7 @@ const getUserEmail = (email) => {
 // Get all books
 
 const getAllBooks = () => {
-  let dbQuery = `SELECT * FROM books LIMIT 10;`;
+  let dbQuery = `SELECT * FROM books;`;
   return pool
     .query(dbQuery)
     .then((res) => {
@@ -93,21 +93,24 @@ const addNewBooks = (userid, books) => {
       });
   } else console.log(`you can only add books as seller`);
 };
-//Add favorite
-const addNewFav = (userid, book) => {
-  let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
-  const value = [userid, book.id];
-  return pool
-    .query(dbQuery, value)
-    .then((res) => res.rows)
-    .catch((err) => {
-      console.log(err.message);
-    });
+//Add favorite will return object with the book user clicked
+const addNewFav = (userid) => {
+  const favBook = getAllBooks().then((res) => {
+    let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
+    const value = [userid, res[0].id];
+    return pool
+      .query(dbQuery, value)
+      .then((res) => res.rows)
+      .catch((err) => {
+        console.log(err.message);
+      });
+  });
+  return favBook;
 };
 
 //Delete books from the books table, use with getAllBooks function after to get the refresh list
 const bookDelete = (bookid) => {
-  let dbQuery = ` DELETE FROM books WHERE id = $1;`;
+  let dbQuery = `DELETE FROM books WHERE id = $1;`;
   const value = [bookid];
   return pool
     .query(dbQuery, value)
