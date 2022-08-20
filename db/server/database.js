@@ -94,8 +94,49 @@ const addNewBooks = (userid, books) => {
   } else console.log(`you can only add books as seller`);
 };
 //Add favorite
-//Delete books
+const addNewFav = (userid, book) => {
+  let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
+  const value = [userid, book.id];
+  return pool
+    .query(dbQuery, value)
+    .then((res) => res.rows)
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+//Delete books from the books table, use with getAllBooks function after to get the refresh list
+const bookDelete = (bookid) => {
+  let dbQuery = ` DELETE FROM books WHERE id = $1;`;
+  const value = [bookid];
+  return pool
+    .query(dbQuery, value)
+    .then((res) => {
+      if (res.rows) {
+        return res.rows;
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+};
+
 //Single book page info
+
+const singleBook = (bookid) => {
+  let dbQuery = ` SELECT * FROM books WHERE id = $1;`;
+  const value = [bookid];
+  return pool
+    .query(dbQuery, value)
+    .then((res) => {
+      if (res.rows) {
+        return res.rows[0];
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+};
 
 module.exports = {
   getUserEmail,
@@ -103,4 +144,7 @@ module.exports = {
   bookPriceFilters,
   addNewBooks,
   getAllBooks,
+  bookDelete,
+  singleBook,
+  addNewFav,
 };
