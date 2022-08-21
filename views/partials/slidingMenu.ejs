@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- <script defer src="/scripts/slidingMenu.js"></script> -->
+  <link rel="stylesheet" href="/styles/slidingMenu.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+  </style>
+
+  <title>slidingMenu</title>
+</head>
+
+<body>
+  <div id="slideMenu" class="slideMenu" onmouseleave="closeMenu()">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Favorites</a></li>
+      <li><a href="#">Add book</a></li>
+      <li class="categoryFilter">Categories
+        <li>cat1</li>
+        <li>cat2</li>
+        <li>cat3</li>
+      </li>
+      <li class="priceFilter">Price Range
+        <li>price1</li>
+        <li>price2</li>
+        <li>price3</li>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- <img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-512.png" alt="Right-arrow" class="expandArrow" id="expandArrow" onmouseover="openMenu()"/> -->
+
+   <img src="/assets/arrow.png" alt="Right-arrow" class="expandArrow" id="expandArrow" onmouseover="openMenu()"/>
+
+
+  <script>
+
+    const openMenu = function() {
+      document.getElementById("slideMenu").style.marginLeft = '0px';
+      document.getElementById("expandArrow").style.marginLeft = "250px";
+    };
+
+
+    const closeMenu = function() {
+      document.getElementById("slideMenu").style.marginLeft = '-250px';
+      document.getElementById("expandArrow").style.marginLeft = "0px";
+    };
+
+  </script>
+</body>
+
+</html>
