@@ -154,6 +154,21 @@ const singleBook = (bookid) => {
     .catch((err) => console.log(err.message));
 };
 
+//Access page for a specific conversation.
+
+const getConversationWithId = (id) => {
+  return pool
+    .query(`SELECT * FROM conversations WHERE id = $1;`, [id])
+    .then((res) => {
+      if (res.rows) {
+        return res.rows[0];
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+};
+
 module.exports = {
   getUserEmail,
   bookFilters,
@@ -163,5 +178,6 @@ module.exports = {
   bookDelete,
   singleBook,
   addNewFav,
+  getConversationWithId,
   getUserWithId,
 };
