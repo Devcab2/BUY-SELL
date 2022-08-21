@@ -17,7 +17,6 @@ const getUserEmail = (email) => {
     .query(dbQuery, value)
     .then((res) => {
       if (res.rows) {
-        console.log(res.rows[0]);
         return res.rows[0];
       } else {
         return null;
@@ -26,8 +25,25 @@ const getUserEmail = (email) => {
     .catch((err) => console.log(err.message));
 };
 
-// Get all books
+// Get user from database given their id
+const getUserWithId = function (id) {
+  let dbQuery = ` SELECT * FROM users WHERE id = $1;`;
+  let value = [id];
+  return pool
+    .query(dbQuery, value)
+    .then((result) => {
+      if (result.rows) {
+        return result.rows[0];
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
+// Get all books
 const getAllBooks = () => {
   let dbQuery = `SELECT * FROM books;`;
   return pool
@@ -41,7 +57,6 @@ const getAllBooks = () => {
 };
 
 // Get book data from database by passing in the genre(passing in hardcode genre for each filter tags)
-
 const bookFilters = (genre) => {
   let dbQuery = `SELECT * FROM books WHERE genre = $1;`;
   const value = [genre];
@@ -58,7 +73,6 @@ const bookFilters = (genre) => {
 };
 
 // Get books with the price range(we will passing in the hardcode price for each price tags)
-
 const bookPriceFilters = (minPrice, maxPrice) => {
   let dbQuery = `SELECT * FROM books WHERE price >= $1 AND price <= $2;`;
   const value = [minPrice, maxPrice];
@@ -77,7 +91,6 @@ const bookPriceFilters = (minPrice, maxPrice) => {
 };
 
 // Add new book into database by admin users(userid will take from the user cookie we stored and passing in)(we dont need book.id or images links so only 9 values in the objects)
-
 const addNewBooks = (userid, books) => {
   if (userid === 2 || userid === 3) {
     const keys = Object.keys(books);
@@ -93,6 +106,7 @@ const addNewBooks = (userid, books) => {
       });
   } else console.log(`you can only add books as seller`);
 };
+
 //Add favorite will return object with the book user clicked
 const addNewFav = (userid) => {
   const favBook = getAllBooks().then((res) => {
@@ -125,7 +139,6 @@ const bookDelete = (bookid) => {
 };
 
 //Single book page info
-
 const singleBook = (bookid) => {
   let dbQuery = ` SELECT * FROM books WHERE id = $1;`;
   const value = [bookid];
@@ -166,4 +179,5 @@ module.exports = {
   singleBook,
   addNewFav,
   getConversationWithId,
+  getUserWithId,
 };
