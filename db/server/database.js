@@ -22,7 +22,7 @@ const getUserEmail = (email) => {
         return null;
       }
     })
-    .catch((err) => console.log(err.message));
+    .catch((err) => console.log(err));
 };
 
 // Get user from database given their id
