@@ -54,6 +54,12 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+// find books page
+
+app.get("/findBooks", (req, res) => {
+  res.render("findBooks");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

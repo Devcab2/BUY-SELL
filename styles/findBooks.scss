@@ -1,7 +1,8 @@
-html{
+/* styles for findBooks */
+
+html {
   overflow: hidden;
 }
-
 
 body {
   background-image: url("https://wallpaperaccess.com/full/340434.png");
@@ -9,24 +10,9 @@ body {
   background-repeat: no-repeat;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
-}
-
-.nav{
-  padding: 0;
-  margin: 0;
-  align-items: stretch;
-}
-
-.pageName{
-height: 100px;
-display: flex;
-align-items: center;
-font-size: x-large;
-font-weight: 500;
-padding-left: 2em;
 }
 
 .storeName{
@@ -39,6 +25,19 @@ padding-left: 2em;
   padding-bottom: 15px;
 }
 
+.pageName{
+  height: 100px;
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  font-weight: 500;
+  padding-left: 2em;
+  }
+
+.homeNavbar {
+  height: 120px;
+}
+
 .loginSpan{
   display:flex;
   justify-content: end;
@@ -47,35 +46,6 @@ padding-left: 2em;
   border-bottom: 4px solid black;
   padding-bottom: 5px;
   padding-right: 10px;
-}
-
-.advertisement{
-  display: flex;
-align-items: center;
-justify-content: center;
-height: 200px;
-font-size: 300%;
-margin-top: 50px;
-}
-
-.homeNavbar {
-  height: 120px;
-}
-
-.booklist{
-display: flex;
-gap: 40px;
-justify-content: space-evenly;
-padding-top: 80px;
-padding-right: 40px;
-padding-left: 40px;
-margin-top: 0;
-margin-bottom: 0;
-list-style: none;
-}
-
-.bodyContain{
-  padding-top: 50px;
 }
 
 .socialLinks{
@@ -88,6 +58,11 @@ list-style: none;
   padding-bottom: 200px;
   gap: 50px;
   list-style: none;
+}
+
+.socialLinks a{
+  height: 15px;
+  width: 15px;
 }
 
 /* hover states for social icons */
@@ -178,20 +153,3 @@ list-style: none;
   top: 0;
   border-radius: 10px;
 }
-
-.booklistItems{
-  display: flex;
-  border: 2px solid black;
-  padding: 5px;
-  width: 200px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  height: 150px;
-  color: linear-gradient(#e66465, #9198e5);
-  img{
-    display: block;
-    margin: 0 auto;
-  }
-}
-
