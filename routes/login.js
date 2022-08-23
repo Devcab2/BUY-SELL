@@ -24,7 +24,10 @@ module.exports = (db) => {
             res.status(403).send("user not exists");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          res.redirect("/home");
+        });
     };
     getUserEmail(email);
   });

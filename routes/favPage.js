@@ -13,7 +13,10 @@ module.exports = (db) => {
         const value = res.json(...data.rows);
         res.render("favourite", { value });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        res.redirect("/home");
+      });
   });
 
   router.post("/", (req, res) => {
@@ -27,7 +30,10 @@ module.exports = (db) => {
     console.log("Add fav");
     db.query(dbQuery, values)
       .then((data) => res.json(data.rows))
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        res.redirect("/home");
+      });
   });
   return router;
 };
