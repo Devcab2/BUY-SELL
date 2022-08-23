@@ -42,6 +42,7 @@ const favPage = require("./routes/favPage");
 const bookRoutes = require("./routes/books");
 const conversationsRoutes = require("./routes/conversations");
 const userLogout = require("./routes/userLogout");
+const addNewBooks = require("./routes/adbooks");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +52,7 @@ app.use("/api/books", bookRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/logout", userLogout(db));
 app.use("/api/favourites", favPage(db));
+app.use("/api/books/add", addNewBooks(db));
 
 // Note: mount other resources here, using the same pattern above
 

@@ -17,11 +17,13 @@ module.exports = () => {
             res.render("findBooks", tempVars);
           })
           .catch((err) => {
-            res.status(500).json({ error: err.message });
+            console.log(err);
+            res.redirect("/home");
           });
       })
       .catch((err) => {
         console.log(err);
+        res.redirect("/home");
       });
   });
   return router;
