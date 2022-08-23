@@ -161,7 +161,7 @@ const getConversationWithId = (id) => {
     .query(`SELECT * FROM conversations WHERE id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
-        return res.rows[0];
+        return res.rows;
       } else {
         return null;
       }

@@ -51,7 +51,6 @@ app.use("/api/books", bookRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/logout", userLogout(db));
 app.use("/api/favourites", favPage(db));
-
 // Note: mount other resources here, using the same pattern above
 
 // Home page
