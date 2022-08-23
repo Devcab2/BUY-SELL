@@ -1,9 +1,5 @@
 /* styles for findBooks */
 
-html {
-
-}
-
 body {
   background-image: url("https://wallpaperaccess.com/full/340434.png");
   background-size: cover;
@@ -62,11 +58,12 @@ body {
   }
 
   .booklistItems{
-    position: relative;
+    // position: relative;
     display: flex;
+    flex-direction: column;
     border: 2px solid black;
     padding: 5px;
-    width: 200px;
+    width: 25%;
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -76,11 +73,11 @@ body {
       display: block;
       margin: 0 auto;
     }
-    i{
-      position: absolute;
-      top: 0;
-      right: 0;
+
+    .fa-info-circle{
+      margin-left: auto;
     }
+
     i:hover{
       color:white;
     }
@@ -194,4 +191,23 @@ body {
   left: 0;
   top: 0;
   border-radius: 10px;
+}
+
+#bookOptions{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 0.8em;
+}
+
+.book-titles {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 0.8em;
+  p {
+    background-color: lavender;
+    text-align: center;
+  }
 }
