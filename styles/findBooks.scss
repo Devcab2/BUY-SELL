@@ -1,7 +1,7 @@
 /* styles for findBooks */
 
 html {
-  overflow: hidden;
+
 }
 
 body {
@@ -48,21 +48,52 @@ body {
   padding-right: 10px;
 }
 
+.booklist{
+  display: flex;
+  gap: 40px;
+  justify-content: space-evenly;
+  padding-top: 80px;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  }
+
+  .booklistItems{
+    display: flex;
+    border: 2px solid black;
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    color: linear-gradient(#e66465, #9198e5);
+    img{
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
 .socialLinks{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 65px;
-  padding-top: 150px;
+  font-size: x-large;
+  padding-right: 30px;
+  padding-top: 400px;
   padding-bottom: 200px;
-  gap: 50px;
+  gap: 30px;
   list-style: none;
+  position: relative;
 }
 
 .socialLinks a{
-  height: 15px;
-  width: 15px;
+  height: 40px;
+  width: 40px;
 }
 
 /* hover states for social icons */
