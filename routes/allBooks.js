@@ -17,7 +17,7 @@ module.exports = (db) => {
           })
           .catch((err) => {
             console.log(err.message);
-            // res.render("500 page");
+            res.render("errorPage");
           });
       };
       getAllBooks();
