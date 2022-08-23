@@ -1,17 +1,17 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/conversations", (req, res) => {
+    res.render("conversations");
+
     db.query(`SELECT * FROM conversations;`)
-      .then(data => {
+      .then((data) => {
         const conversations = data.rows;
         res.json({ conversations });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
       });
   });
   return router;

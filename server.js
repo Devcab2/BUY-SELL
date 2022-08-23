@@ -21,6 +21,7 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(
   "/styles",
@@ -35,17 +36,24 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+
+const userLogin = require("./routes/login");
 const usersRoutes = require("./routes/users");
 const bookRoutes = require("./routes/books");
 const conversationsRoutes = require("./routes/conversations");
+const userLogout = require("./routes/userLogout");
 const widgetsRoutes = require("./routes/widgets");
-
+const allBooks = require("../BUY-SELL/routes/allBooks");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+
+app.use("/api/login", userLogin(db));
 app.use("/api/users", usersRoutes(db));
 app.use("/api/books", bookRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
+app.use("/api/logout", userLogout(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/books", allBooks(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
