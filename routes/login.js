@@ -18,7 +18,7 @@ module.exports = (db) => {
       db.query(dbQuery, value)
         .then((user) => {
           if (email === user.rows.email) {
-            res.cookie("userId", user.rows.email);
+            res.cookie("userId", user.rows.id);
             res.redirect("/books");
           } else {
             res.status(403).send("user not exists");
