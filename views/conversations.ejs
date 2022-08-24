@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Conversations</title>
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <head>
+    <!-- Meta Information -->
+    <title>Conversations</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css"/>
+
+
+    <!-- JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
   </head>
+
+  <body>
+
+    <%- include('partials/_slidingMenu') %>
+
+    <header>
+      <%- include('partials/_header') %>
+    </header>
+
+    <main>
+      </section>
+        <section id="messagesContainer">
+      </section>
+
+      <form action="/api/conversations" method="post">
+        <label for="newMessage">Message:</label>
+        <textarea id="newMessage" name="newMessage"></textarea>
+        <button type="submit">Send your message</button>
+      </form>
+
+    </main>
+
+    <footer>
+      <%- include('partials/_footer') %>
+    </footer>
+
+  </body>
+
+</html>

@@ -39,6 +39,6 @@ INSERT INTO books (id, user_id,book_title, book_author,description,year_of_publi
 INSERT INTO books (id, user_id,book_title, book_author,description,year_of_publication,genre,rating,quantity,price,image_url_s,image_url_m,image_url_l) VALUES (35, 3, 'Getting Well Again', 'O. Carol Simonton Md', 'lorem',2006, 'Historical Fiction', 3.1, 1,36.99, 'http://images.amazon.com/images/P/0553280333.01.THUMBZZZ.jpg', 'http://images.amazon.com/images/P/0553280333.01.MZZZZZZZ.jpg', 'http://images.amazon.com/images/P/0553280333.01.LZZZZZZZ.jpg');
 INSERT INTO books (id, user_id,book_title, book_author,description,year_of_publication,genre,rating,quantity,price,image_url_s,image_url_m,image_url_l) VALUES (36, 2, 'The Pillars of the Earth', 'Ken Follett', 'lorem',1996, 'Action & Adventure', 3.8, 1,24.99, 'http://images.amazon.com/images/P/0451166892.01.THUMBZZZ.jpg', 'http://images.amazon.com/images/P/0451166892.01.MZZZZZZZ.jpg', 'http://images.amazon.com/images/P/0451166892.01.LZZZZZZZ.jpg');
 INSERT INTO favourites (id, user_id,book_id) VALUES (1, 1, 1);
-INSERT INTO conversation (id,book_id) VALUES (1, 3);
-INSERT INTO messages (id, convers_id,user_id,message) VALUES (1, 1, 1, 'how much is this book?');
-INSERT INTO messages (id, convers_id,user_id,message) VALUES (2, 1, 2, 'its 32.99');
+INSERT INTO conversations (id,book_id) VALUES (1, 3);
+INSERT INTO messages (id, convers_id,user_id,message) VALUES (1, 1, 1, 'Hi. I am interested in this book? What condition is it in?');
+INSERT INTO messages (id, convers_id,user_id,message) VALUES (2, 1, 2, 'Hello. It is in great condition. It looks almost brand new. Would you like to buy it?');

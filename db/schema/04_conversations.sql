@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS conversation CASCADE;
+DROP TABLE IF EXISTS conversations CASCADE;
 
-CREATE TABLE conversation (
+CREATE TABLE conversations (
   id SERIAL PRIMARY KEY NOT NULL,
   book_id INTEGER REFERENCES books(id) ON DELETE CASCADE
 );
