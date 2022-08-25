@@ -14,7 +14,7 @@ $(document).ready(function() {
   };
 
   const signIn = function() {
-    $("form").on("submit", function(event) {
+    $("form.loginForm").on("submit", function(event) {
       event.preventDefault();
       const text = $("form input").val();
       console.log(text);

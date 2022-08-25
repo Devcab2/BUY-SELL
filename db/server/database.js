@@ -26,7 +26,7 @@ const getUserEmail = (email) => {
 };
 
 // Get user from database given their id
-const getUserWithId = function (id) {
+const getUserWithId = function(id) {
   let dbQuery = ` SELECT * FROM users WHERE id = $1;`;
   let value = [id];
   return pool
@@ -92,6 +92,7 @@ const bookPriceFilters = (minPrice, maxPrice) => {
 
 // Add new book into database by admin users(userid will take from the user cookie we stored and passing in)(we dont need book.id or images links so only 9 values in the objects)
 const addNewBooks = (userid, books) => {
+
   if (userid === 2 || userid === 3) {
     const value = [
       userid,
@@ -112,12 +113,16 @@ const addNewBooks = (userid, books) => {
     return pool
       .query(dbQuery, value)
       .then((res) => {
+        console.log("it worked", res.rows);
         return res.rows[0];
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log("error inserting new book",err.message);
       });
-  } else console.log(`you can only add books as seller`);
+  } else {
+    console.log(`you can only add books as seller`);
+    return new Promise();
+  }
 };
 
 //Add favorite will return object with the book user clicked
