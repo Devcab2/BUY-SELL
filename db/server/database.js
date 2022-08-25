@@ -55,7 +55,7 @@ const getAllBooks = () => {
       console.log(err.message);
     });
 };
-
+getAllBooks();
 // Get book data from database by passing in the genre(passing in hardcode genre for each filter tags)
 const bookFilters = (genre) => {
   let dbQuery = `SELECT * FROM books WHERE genre = $1;`;
@@ -93,14 +93,27 @@ const bookPriceFilters = (minPrice, maxPrice) => {
 // Add new book into database by admin users(userid will take from the user cookie we stored and passing in)(we dont need book.id or images links so only 9 values in the objects)
 const addNewBooks = (userid, books) => {
   if (userid === 2 || userid === 3) {
-    const keys = Object.keys(books);
-    const value = Object.values(books);
-    let dbQuery = `INSERT INTO books (${keys.join(
-      ","
-    )}) VALUES ($1, $2, $3, $4,$5, $6, $7, $8, $9) RETURNING *;`;
+    const value = [
+      userid,
+      books.book_title,
+      books.book_author,
+      books.description,
+      books.year_of_publication,
+      books.genre,
+      books.rating,
+      books.quantity,
+      books.price,
+      books.image_url_s,
+      books.image_url_m,
+      books.image_url_l,
+    ];
+    let dbQuery = `INSERT INTO books (user_id,book_title, book_author,description,year_of_publication,genre,rating,quantity,price,image_url_s,image_url_m,image_url_l
+    ) VALUES ($1, $2, $3, $4,$5, $6, $7, $8, $9,$10,$11,$12) RETURNING *;`;
     return pool
       .query(dbQuery, value)
-      .then((res) => res.rows)
+      .then((res) => {
+        return res.rows[0];
+      })
       .catch((err) => {
         console.log(err.message);
       });

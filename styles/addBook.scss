@@ -1,0 +1,32 @@
+/* styles for addBooks */
+
+.bookAddForm {
+  margin-bottom: 10px;
+}
+
+.maincontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.formcontainer {
+  margin-top: 6em;
+  margin-right: 10em;
+}
+
+.bookcontainer {
+  margin-top: 3em;
+}
+.bookbody {
+  list-style-type: none;
+}
+
+.titleprice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newbooktitle {
+  font-size: 20px;
+  margin-top: 12em;
+}

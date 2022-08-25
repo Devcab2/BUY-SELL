@@ -15,7 +15,7 @@ module.exports = (db) => {
       })
       .catch((e) => {
         console.log(e);
-        res.redirect("/home");
+        res.redirect("/");
       });
   });
 
@@ -32,7 +32,7 @@ module.exports = (db) => {
       .then((data) => res.json(data.rows))
       .catch((e) => {
         console.log(e);
-        res.redirect("/home");
+        res.redirect("/");
       });
   });
   return router;

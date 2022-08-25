@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/findBooks.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/addBook.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- Add icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/_slidingMenu') %>
+    <header><%- include('partials/_header') %></header>
+    <main class="maincontainer">
+      <body>
+        <% console.log(newBook) %>
+        <form action="/api/books/add" method="POST">
+          <div class="formcontainer">
+            <div class="bookAddForm">
+              <input type="text" name="book_title" />
+              <label for="book_title" lass="addFormdis">
+                <b>Book Title</b></label
+              >
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="book_author" />
+              <label for="book_author" class="addFormdis">
+                <b>Book Author</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="description" />
+              <label for="description" class="addFormdis">
+                <b>Description</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="number" name="year_of_publication" />
+              <label for="year_of_publication" class="addFormdis">
+                <b>Year of publication</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="genre" />
+              <label for="genre" class="addFormdis">
+                <b>Genre</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="number" name="rating" step="any" />
+              <label for="rating" class="addFormdis">
+                <b>rating</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="number" name="quantity" />
+              <label for="quantity" class="addFormdis">
+                <b>Quantity</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="number" name="price" step="any" />
+              <label for="price" class="addFormdis">
+                <b>Price</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="image_url_s" />
+              <label for="image_url_s" class="addFormdis">
+                <b>Sml image</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="image_url_m" />
+              <label for="image_url_m" class="addFormdis">
+                <b>Mid image</b>
+              </label>
+            </div>
+            <div class="bookAddForm">
+              <input type="text" name="image_url_l" />
+              <label for="image_url_l" class="addFormdis">
+                <b>Large img</b>
+              </label>
+            </div>
+          </div>
+          <%if(user.user_type === "admin"){ %>
+          <button type="submit" class="submitbnt">Submit</button>
+          <%}%>
+        </form>
+        <%if(newBook===null){%>
+        <div class="newbooktitle"><p>New book will show here</p></div>
+
+        <%} else{%>
+        <div class="bookcontainer">
+          <ul class="bookbody">
+            <li class="single">
+              <img src="<%= newBook.image_url_l%>" alt="book" />
+              <div class="titleprice">
+                <p><%=newBook.book_title%></p>
+                <P><%=newBook.price%></P>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <%}%>
+      </body>
+    </main>
+    <footer><%- include('partials/_footer') %></footer>
+  </body>
+</html>
