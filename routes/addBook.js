@@ -8,7 +8,7 @@ module.exports = (db) => {
     getUserWithId(3)
       .then((user) => {
         if (user.user_type === "admin") {
-          const temVars = { user: user, newBook: null };
+          const temVars = { user: user, newBook: null, userId };
           console.log(user);
           res.render("addBook", temVars);
         }
@@ -23,12 +23,12 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const userId = req.cookies.userId;
     const books = req.body;
-    console.log(books);
-    getUserWithId(3)
+    console.log("hello", books, userId);
+    getUserWithId(userId)
       .then((user) => {
-        addNewBooks(3, books)
+        addNewBooks(Number(userId), books)
           .then((newBook) => {
-            const temVars = { user: user, newBook: newBook };
+            const temVars = { user: user, newBook: newBook, userId };
             console.log("temVars", temVars);
             res.render("addBook", temVars);
           })
