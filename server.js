@@ -60,7 +60,7 @@ app.use("/api/addBook", addBook(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { userId: req.cookies.userId });
 });
 
 app.listen(PORT, () => {
