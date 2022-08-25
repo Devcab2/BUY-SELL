@@ -39,21 +39,18 @@ app.use(express.static("public"));
 
 const userLogin = require("./routes/login");
 const favPage = require("./routes/favPage");
-const bookRoutes = require("./routes/findBooks");
+const book = require("./routes/books");
 const conversationsRoutes = require("./routes/conversations");
 const userLogout = require("./routes/userLogout");
-const addNewBooks = require("./routes/adbooks");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 
 app.use("/api/login", userLogin(db));
-app.use("/api/books", bookRoutes(db));
 app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/logout", userLogout(db));
 app.use("/api/favourites", favPage(db));
-app.use("/api/books/add", addNewBooks(db));
-
+app.use("/api/books", book(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

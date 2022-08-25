@@ -17,9 +17,9 @@ module.exports = (db) => {
       const value = [emails];
       db.query(dbQuery, value)
         .then((user) => {
-          if (email === user.rows.email) {
-            res.cookie("userId", user.rows.id);
-            res.redirect("/books");
+          if (email === user.rows[0].email) {
+            res.cookie("userId", user.rows[0].id);
+            res.redirect("/api/books");
           } else {
             res.status(403).send("user not exists");
           }
