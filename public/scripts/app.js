@@ -23,6 +23,7 @@ $(document).ready(function() {
       } else {
         $.post("/api/login", $(this).serialize())
           .then(() => {
+            console.log("hello");
             $("#error-message").hide();
             window.location.href = window.location.origin + "/api/books";
           })
@@ -32,5 +33,5 @@ $(document).ready(function() {
       }
     });
   };
- signIn();
+  signIn();
 });
