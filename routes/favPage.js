@@ -11,19 +11,17 @@ module.exports = (db) => {
     const userId = req.cookies.userId;
     getUserWithId(userId)
       .then((user) => {
-        if (user.user_type === "admin") {
-          favBookPerUser(userId)
-            .then((booksArray) => {
-              console.log("userFav", booksArray);
-              const tempVars = { userId: user.id, user, favBooks: booksArray };
-              console.log(tempVars);
-              res.render("favPage", tempVars);
-            })
-            .catch((e) => {
-              console.log(e);
-              res.redirect("/home");
-            });
-        }
+        favBookPerUser(userId)
+          .then((booksArray) => {
+            console.log("userFav", booksArray);
+            const tempVars = { userId: user.id, user, favBooks: booksArray };
+            console.log(tempVars);
+            res.render("favPage", tempVars);
+          })
+          .catch((e) => {
+            console.log(e);
+            res.redirect("/home");
+          });
       })
       .catch((err) => {
         console.log(err);
