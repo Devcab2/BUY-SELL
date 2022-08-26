@@ -42,7 +42,13 @@
               <p><%=book.book_title%></p>
             </div>
             <div id="bookOptions">
-              <i class="fa fa-trash" aria-hidden="true"></i>
+              <% if (user.user_type === "admin") { %>
+              <form method="POST" action="/api/deleteBook/<%= book.id %>">
+                <button type="submit">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </form>
+              <% } %>
               <i class="fa fa-commenting-o" aria-hidden="true"></i>
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
               <form method="POST" action="/api/favourites/<%= book.id %>">
