@@ -17,7 +17,7 @@ module.exports = (db) => {
               console.log("userFav", booksArray);
               const tempVars = { userId: user.id, user, favBooks: booksArray };
               console.log(tempVars);
-              res.render("favPage", tempVars); //<---!!!!!!change the EJS file name to yours
+              res.render("favPage", tempVars);
             })
             .catch((e) => {
               console.log(e);
@@ -35,7 +35,6 @@ module.exports = (db) => {
   router.post("/:id", (req, res) => {
     const userId = req.cookies.userId;
     const bookId = req.params.id;
-    console.log("User id and chosenbook **************", userId, bookId);
     addNewFav(userId, bookId)
       .then((fav) => {
         console.log(fav);

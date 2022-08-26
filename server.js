@@ -45,6 +45,7 @@ const userLogout = require("./routes/userLogout");
 const addBook = require("./routes/addBook");
 const filterGenre = require("../BUY-SELL/routes/filterGenre");
 const filterPrice = require("../BUY-SELL/routes/filterPrice");
+const bookDelete = require("./routes/deleteBook");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -57,6 +58,7 @@ app.use("/api/books", book(db));
 app.use("/api/addBook", addBook(db));
 app.use("/api/books/genre", filterGenre(db));
 app.use("/api/books/price", filterPrice(db));
+app.use("/api/deleteBook", bookDelete(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

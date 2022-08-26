@@ -16,7 +16,7 @@ module.exports = () => {
             const tempVars = {
               user,
               books,
-              userId,
+              userId
             };
             return res.render("findBooks", tempVars);
           })
