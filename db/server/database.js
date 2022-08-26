@@ -174,9 +174,30 @@ const singleBook = (bookid) => {
 
 //Access page for a specific conversation.
 
-const getConversationWithId = (id) => {
+const getUserConversations = (id) => {
   return pool
-    .query(`SELECT * FROM conversations WHERE id = $1;`, [id])
+    .query(`SELECT conversations.id AS conversation_ID
+    FROM conversations
+    JOIN messages ON conversations.id = messages.convers_id
+    WHERE messages.user_id = $1;`, [id])
+    .then((res) => {
+      if (res.rows) {
+        return res.rows;
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+}
+
+const getConversationMessages = (id) => {
+  return pool
+    .query(`
+    SELECT books.user_id AS seller, books.book_title AS book, message
+    FROM messages
+    JOIN conversations ON messages.convers_id = conversations.id
+    JOIN books on conversations.book_id = books.id
+    WHERE messages.user_id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
         return res.rows;
@@ -196,6 +217,7 @@ module.exports = {
   bookDelete,
   singleBook,
   addNewFav,
-  getConversationWithId,
+  getUserConversations,
   getUserWithId,
+  getConversationMessages
 };
