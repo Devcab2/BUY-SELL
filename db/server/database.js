@@ -91,9 +91,16 @@ const bookPriceFilters = (minPrice, maxPrice) => {
 };
 
 // Add new book into database by admin users(userid will take from the user cookie we stored and passing in)(we dont need book.id or images links so only 9 values in the objects)
+const ranNum = () => {
+  const num = Math.floor(Math.random() * 1000 + 37);
+  return num;
+};
+
 const addNewBooks = (userid, books) => {
   if (userid === 2 || userid === 3) {
+    const bookid = ranNum();
     const value = [
+      bookid,
       userid,
       books.book_title,
       books.book_author,
@@ -107,11 +114,12 @@ const addNewBooks = (userid, books) => {
       books.image_url_m,
       books.image_url_l,
     ];
-    let dbQuery = `INSERT INTO books (user_id,book_title, book_author,description,year_of_publication,genre,rating,quantity,price,image_url_s,image_url_m,image_url_l
-    ) VALUES ($1, $2, $3, $4,$5, $6, $7, $8, $9,$10,$11,$12) RETURNING *;`;
+    let dbQuery = `INSERT INTO books (id,user_id,book_title, book_author,description,year_of_publication,genre,rating,quantity,price,image_url_s,image_url_m,image_url_l
+    ) VALUES ($1, $2, $3, $4,$5, $6, $7, $8, $9,$10,$11,$12,$13) RETURNING *;`;
     return pool
       .query(dbQuery, value)
       .then((res) => {
+        console.log("addNewbooks", res.rows[0]);
         return res.rows[0];
       })
       .catch((err) => {

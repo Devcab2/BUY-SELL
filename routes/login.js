@@ -13,7 +13,7 @@ module.exports = (db) => {
     const { email } = req.body;
     const getUserEmail = (email) => {
       let dbQuery = `SELECT * FROM users WHERE email =$1;`;
-      const emails = email.toLowerCase();
+      const emails = email;
       const value = [emails];
       db.query(dbQuery, value)
         .then((user) => {

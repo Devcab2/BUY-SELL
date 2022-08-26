@@ -9,7 +9,6 @@ module.exports = (db) => {
       .then((user) => {
         if (user.user_type === "admin") {
           const temVars = { user: user, newBook: null };
-          console.log(user);
           res.render("addBook", temVars);
         }
       })
@@ -28,6 +27,7 @@ module.exports = (db) => {
       .then((user) => {
         addNewBooks(3, books)
           .then((newBook) => {
+            console.log("Post", newBook);
             const temVars = { user: user, newBook: newBook };
             console.log("temVars", temVars);
             res.render("addBook", temVars);

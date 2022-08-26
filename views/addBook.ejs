@@ -26,7 +26,6 @@
     <header><%- include('partials/_header') %></header>
     <main class="maincontainer">
       <body>
-        <% console.log(newBook) %>
         <form action="/api/books/add" method="POST">
           <div class="formcontainer">
             <div class="bookAddForm">
@@ -96,13 +95,10 @@
               </label>
             </div>
           </div>
-          <%if(user.user_type === "admin"){ %>
           <button type="submit" class="submitbnt">Submit</button>
-          <%}%>
         </form>
         <%if(newBook===null){%>
         <div class="newbooktitle"><p>New book will show here</p></div>
-
         <%} else{%>
         <div class="bookcontainer">
           <ul class="bookbody">
