@@ -24,47 +24,78 @@
       <li><a href="/api/conversations">Conversations</a></li>
       <div class="gap"></div>
       <h1 class="filterTitle">Filter Products:</h1>
-    <div class="categories">
-      <li class="categoryFilter"> Select Categories:
+      <div class="categories">
+        <li class="categoryFilter"> Select a Category:
+          <hr>
+        <li>
+          <form method="POST" action="/api/books/genre/Humour">
+            <button type="submit">Humour</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  Humour</li>
+        <li>
+          <form method="POST" action="/api/books/genre/Action & Adventure">
+            <button type="submit">Action & Adventure</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  Action & Adventure</li>
+        <li>
+          <form method="POST" action="/api/books/genre/Historical Fiction">
+            <button type="submit">Historical Fiction</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  Historical Fiction</li>
+        <li>
+          <form method="POST" action="/api/books/genre/Fantasy, Horror & Science Fiction">
+            <button type="submit">Fantasy, Horror & Science Fiction</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  Fantasy, Horror & Science Fiction</li>
-      </li>
-    </div>
-    <div class="price">
-      <li class="priceFilter">Price Range:
+      </div>
+      <div class="price">
+        <li class="priceFilter">Max Price:
+          <hr>
+        <li>
+          <form method="POST" action="/api/books/price/19.99">
+            <button type="submit">$19.99</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  0.00$ - 24.00$</li>
+        <li>
+          <form method="POST" action="/api/books/price/25.00">
+            <button type="submit">$25.00</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  24.01$ - 29.99$</li>
+        <li>
+          <form method="POST" action="/api/books/price/35.00">
+            <button type="submit">$35.00</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  30.00$ - 34.99$</li>
+        <li>
+          <form method="POST" action="/api/books/price/100.00">
+            <button type="submit">$100.00</button>
+          </form>
+        </li>
         <hr>
-        <li><input type="checkbox" />  35.00$ - 100.00$</li>
-      </li>
-    </div>
-
+      </div>
     </ul>
   </div>
 
-   <img src="/assets/arrow.png" alt="Right-arrow" class="expandArrow" id="expandArrow" onmouseover="openMenu()"/>
+  <img src="/assets/arrow.png" alt="Right-arrow" class="expandArrow" id="expandArrow" onmouseover="openMenu()" />
 
 
   <script>
 
-    const openMenu = function() {
+    const openMenu = function () {
       document.getElementById("slideMenu").style.marginLeft = '0px';
       document.getElementById("expandArrow").style.marginLeft = "250px";
       console.log("triggered");
     };
 
 
-    const closeMenu = function() {
+    const closeMenu = function () {
       document.getElementById("slideMenu").style.marginLeft = '-250px';
       document.getElementById("expandArrow").style.marginLeft = "0px";
     };
