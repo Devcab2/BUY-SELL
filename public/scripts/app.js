@@ -1,8 +1,5 @@
 // Client facing scripts here
 
-
-// import jQuery file to render conversations view
-
 // signIn function
 
 $(document).ready(function() {
@@ -35,3 +32,5 @@ $(document).ready(function() {
   };
   signIn();
 });
+=======
+>>>>>>> Stashed changes

@@ -19,8 +19,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
+<<<<<<< Updated upstream
     <title>Find Books</title>
   </head>
+=======
+  <!-- Add icon library -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <link rel="stylesheet" href="/vendor/fontawesome/css/all.css">
+>>>>>>> Stashed changes
 
   <body>
     <%- include('partials/_slidingMenu') %>
@@ -31,21 +38,24 @@
       <div class="bodyContain">
         <ul class="booklist">
           <% for (const book of books) { %>
-          <li class="booklistItems">
-            <%= book.bookid %>
-            <i class="fa fa-info-circle" aria-hidden="true"></i>
-            <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
-            <div class="book-titles">
-              <p><%=book.book_title%></p>
-            </div>
-            <div id="bookOptions">
-              <i class="fa fa-trash" aria-hidden="true"></i>
-              <i class="fa fa-commenting-o" aria-hidden="true"></i>
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-            </div>
-            <% } %>
-          </li>
+            <li class="booklistItems">
+              <%= book.bookid %>
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>"/>
+                    <div class="book-titles">
+                      <p><%=book.book_title%></p>
+                    </div>
+                    <div id="bookOptions">
+                      <input type="submit" value="&#xf1f8;"/>
+                      <form method="post" action="/api/conversations/:id">
+                        <input type="submit" value="&#xf4ad;"/>
+                      </form>
+
+                      <input type="submit" value="&#xf07a;"/>
+                      <input type="submit" value="&#xf005;"/>
+                    </div>
+                <% } %>
+            </li>
         </ul>
       </div>
     </main>
