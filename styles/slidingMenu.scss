@@ -42,3 +42,29 @@
   position: fixed;
   bottom: 50%;
 }
+
+.categories{
+  display: flex;
+  font-family: Tahoma;
+  height: 200px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  line-height: 28pt;
+}
+
+.price{
+  display: flex;
+  height: 200px;
+  font-family: Tahoma;
+  flex-direction: column;
+  width:100%;
+  justify-content: center;
+  align-items: baseline;
+  line-height: 28pt;
+}
+
+.gap{
+  height: 30px;
+}

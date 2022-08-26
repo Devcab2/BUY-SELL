@@ -17,19 +17,36 @@
 <body>
   <div id="slideMenu" class="slideMenu" onmouseleave="closeMenu()">
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Favorites</a></li>
-      <li><a href="#">Add book</a></li>
-      <li class="categoryFilter">Categories
-        <li>cat1</li>
-        <li>cat2</li>
-        <li>cat3</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/api/favourites">Favorites</a></li>
+      <li><a href="/api/addBook">Add book</a></li>
+      <li><a href="/api/books">Find Books</a></li>
+      <div class="gap"></div>
+      <h1 class="filterTitle">Filter Products:</h1>
+    <div class="categories">
+      <li class="categoryFilter"> Select Categories:
+        <hr>
+        <li><input type="checkbox" />  Humour</li>
+        <hr>
+        <li><input type="checkbox" />  Action & Adventure</li>
+        <hr>
+        <li><input type="checkbox" />  Historical Fiction</li>
+        <hr>
+        <li><input type="checkbox" />  Fantasy, Horror & Science Fiction</li>
       </li>
-      <li class="priceFilter">Price Range
-        <li>price1</li>
-        <li>price2</li>
-        <li>price3</li>
+    </div>
+    <div class="price">
+      <li class="priceFilter">Price Range:
+        <hr>
+        <li><input type="checkbox" />  0.00$ - 24.00$</li>
+        <hr>
+        <li><input type="checkbox" />  24.01$ - 29.99$</li>
+        <hr>
+        <li><input type="checkbox" />  30.00$ - 34.99$</li>
+        <hr>
+        <li><input type="checkbox" />  35.00$ - 100.00$</li>
       </li>
+    </div>
 
     </ul>
   </div>

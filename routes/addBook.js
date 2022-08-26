@@ -22,10 +22,10 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const userId = req.cookies.userId;
     const books = req.body;
-    console.log(books);
-    getUserWithId(3)
+    console.log("hello", books, userId);
+    getUserWithId(userId)
       .then((user) => {
-        addNewBooks(3, books)
+        addNewBooks(Number(userId), books)
           .then((newBook) => {
             console.log("Post", newBook);
             const temVars = { user: user, newBook: newBook };

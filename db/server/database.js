@@ -123,9 +123,12 @@ const addNewBooks = (userid, books) => {
         return res.rows[0];
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log("error inserting new book", err.message);
       });
-  } else console.log(`you can only add books as seller`);
+  } else {
+    console.log(`you can only add books as seller`);
+    return new Promise();
+  }
 };
 
 //Add favorite will return object with the book user clicked
