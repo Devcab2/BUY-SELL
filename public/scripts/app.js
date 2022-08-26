@@ -1,8 +1,5 @@
 // Client facing scripts here
 
-
-// import jQuery file to render conversations view
-
 // signIn function
 
 $(document).ready(function() {
