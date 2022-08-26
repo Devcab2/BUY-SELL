@@ -42,6 +42,7 @@ const favPage = require("./routes/favPage");
 const book = require("./routes/books");
 const conversationsRoutes = require("./routes/conversations");
 const userLogout = require("./routes/userLogout");
+const addBook = require("./routes/addBook");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +52,7 @@ app.use("/api/conversations", conversationsRoutes(db));
 app.use("/api/logout", userLogout(db));
 app.use("/api/favourites", favPage(db));
 app.use("/api/books", book(db));
+app.use("/api/addBook", addBook(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -58,7 +60,7 @@ app.use("/api/books", book(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { userId: req.cookies.userId });
 });
 
 app.listen(PORT, () => {

@@ -11,7 +11,7 @@ $(document).ready(function() {
   };
 
   const signIn = function() {
-    $("form").on("submit", function(event) {
+    $("form.loginForm").on("submit", function(event) {
       event.preventDefault();
       const text = $("form input").val();
       console.log(text);
@@ -20,6 +20,7 @@ $(document).ready(function() {
       } else {
         $.post("/api/login", $(this).serialize())
           .then(() => {
+            console.log("hello");
             $("#error-message").hide();
             window.location.href = window.location.origin + "/api/books";
           })
@@ -29,7 +30,7 @@ $(document).ready(function() {
       }
     });
   };
- signIn();
+  signIn();
 });
 =======
 >>>>>>> Stashed changes
