@@ -46,13 +46,15 @@
                       <p><%=book.book_title%></p>
                     </div>
                     <div id="bookOptions">
-                      <input type="submit" value="&#xf1f8;"/>
-                      <form method="post" action="/api/conversations/:id">
-                        <input type="submit" value="&#xf4ad;"/>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <form method="get" action="/api/conversations/:id">
+                        <button class="iconSubmit" type="submit">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                      </button>
                       </form>
 
-                      <input type="submit" value="&#xf07a;"/>
-                      <input type="submit" value="&#xf005;"/>
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
                     </div>
                 <% } %>
             </li>
