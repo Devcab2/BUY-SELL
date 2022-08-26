@@ -15,7 +15,8 @@ module.exports = (db) => {
           favBookPerUser(userId)
             .then((booksArray) => {
               console.log("userFav", booksArray);
-              const tempVars = { user, favBooks: booksArray };
+              const tempVars = { userId: user.id, user, favBooks: booksArray };
+              console.log(tempVars);
               res.render("favPage", tempVars); //<---!!!!!!change the EJS file name to yours
             })
             .catch((e) => {

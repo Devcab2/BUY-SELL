@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/findBooks.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/favPage.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -19,7 +19,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <title>Find Books</title>
+    <title>Fav Page</title>
   </head>
 
   <!-- Add icon library -->
@@ -34,7 +34,7 @@
     <main>
       <div class="bodyContain">
         <ul class="booklist">
-          <% for (const book of books) { %>
+          <% for (const book of favBooks) { %>
           <li class="booklistItems">
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
