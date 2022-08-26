@@ -207,12 +207,28 @@ const getConversationMessages = (id) => {
 const favBookPerUser = (userId) => {
   return pool
     .query(
-      `SELECT f.user_id as userId, b.book_title,b.price,b.year_of_publication,b.genre,b.rating, b.image_url_s FROM favourites f JOIN books b ON b.id = f.book_id WHERE f.user_id = $1;`,
+      `SELECT f.user_id as userId, b.id, b.book_title,b.price,b.year_of_publication,b.genre,b.rating, b.image_url_s FROM favourites f JOIN books b ON b.id = f.book_id WHERE f.user_id = $1;`,
       [userId]
     )
     .then((res) => {
       if (res.rows) {
         console.log(res.rows);
+        return res.rows;
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+};
+
+//Delete books from the favourites table
+const favDelete = (userid, bookid) => {
+  let dbQuery = `DELETE FROM favourites WHERE user_id = $1 AND book_id = $2;`;
+  const value = [userid, bookid];
+  return pool
+    .query(dbQuery, value)
+    .then((res) => {
+      if (res.rows) {
         return res.rows;
       } else {
         return null;
@@ -233,5 +249,6 @@ module.exports = {
   getUserConversations,
   getUserWithId,
   favBookPerUser,
-  getConversationMessages
+  getConversationMessages,
+  favDelete
 };
