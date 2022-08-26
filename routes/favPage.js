@@ -15,8 +15,8 @@ module.exports = (db) => {
           favBookPerUser(userId)
             .then((booksArray) => {
               console.log("userFav", booksArray);
-              const tempVars = { user: user, favBook: booksArray };
-              res.render("favpage", tempVars); //<---!!!!!!change the EJS file name to yours
+              const tempVars = { user, favBooks: booksArray };
+              res.render("favPage", tempVars); //<---!!!!!!change the EJS file name to yours
             })
             .catch((e) => {
               console.log(e);
@@ -30,14 +30,15 @@ module.exports = (db) => {
       });
   });
 
-  // userId is not from cookie yet, still hardcode
+
   router.post("/:id", (req, res) => {
     const userId = req.cookies.userId;
     const bookId = req.params.id;
-    console.log("User id and chosenbook", userId, bookId);
+    console.log("User id and chosenbook **************", userId, bookId);
     addNewFav(userId, bookId)
       .then((fav) => {
         console.log(fav);
+        res.redirect("../../api/books");
       })
       .catch((e) => {
         console.log(e);

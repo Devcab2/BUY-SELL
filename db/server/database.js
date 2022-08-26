@@ -126,7 +126,7 @@ const addNewBooks = (userid, books) => {
 
 //Add favorite will return object with the book user clicked
 const addNewFav = (userId, bookId) => {
-  let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
+  let dbQuery = `INSERT INTO favourites (user_id, book_id) VALUES ($1, $2) RETURNING *;`;
   const value = [userId, bookId];
   return pool
     .query(dbQuery, value)

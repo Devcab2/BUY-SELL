@@ -36,7 +36,7 @@
         <ul class="booklist">
           <% for (const book of books) { %>
           <li class="booklistItems">
-            <%= book.bookid %>
+            <%= book.id %>
             <i class="fa fa-info-circle" aria-hidden="true"></i>
             <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
             <div class="book-titles">
@@ -46,12 +46,11 @@
               <i class="fa fa-trash" aria-hidden="true"></i>
               <i class="fa fa-commenting-o" aria-hidden="true"></i>
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <i class="fa fa-star-o" aria-hidden="true"></i>
-              <!-- <form method="post" action="/...">
+              <form method="POST" action="/api/favourites/<%= book.id %>">
                 <button type="submit">
                   <i class="fa fa-star-o" aria-hidden="true"></i>
                 </button>
-              </form> -->
+              </form>
             </div>
             <% } %>
           </li>
