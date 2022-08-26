@@ -1,35 +1,43 @@
 const express = require("express");
+const {
+  getUserWithId,
+  addNewFav,
+  favBookPerUser,
+} = require("../db/server/database");
 const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    const dbQuery = `SELECT f.id, f.book_id,b.book_title,b.price,b.image_url_s
-    FROM favourites f
-    JOIN books b ON book_id = b.id
-    WHERE f.user_id = $1;`;
-    const values = [req.cookies.userId];
-    db.query(dbQuery, values)
-      .then((data) => {
-        const value = res.json(...data.rows);
-        res.render("favourite", { value });
+    const userId = req.cookies.userId;
+    getUserWithId(userId)
+      .then((user) => {
+        if (user.user_type === "admin") {
+          favBookPerUser(userId)
+            .then((booksArray) => {
+              console.log("userFav", booksArray);
+              const tempVars = { user: user, favBook: booksArray };
+              res.render("favpage", tempVars); //<---!!!!!!change the EJS file name to yours
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }
       })
-      .catch((e) => {
-        console.log(e);
-        res.redirect("/");
+      .catch((err) => {
+        console.log(err);
+        res.redirect("/home");
       });
   });
 
-  router.post("/", (req, res) => {
-    console.log(req.body);
-    const dbQuery = `
-    INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;
-    `;
-    //req.body.id comes from books table
-    const values = [req.cookies.userId, req.body.id];
-
-    console.log("Add fav");
-    db.query(dbQuery, values)
-      .then((data) => res.json(data.rows))
+  // userId is not from cookie yet, still hardcode
+  router.post("/:id", (req, res) => {
+    const userId = req.cookies.userId;
+    const bookId = req.params.id;
+    console.log("User id and chosenbook", userId, bookId);
+    addNewFav(userId, bookId)
+      .then((fav) => {
+        console.log(fav);
+      })
       .catch((e) => {
         console.log(e);
         res.redirect("/");

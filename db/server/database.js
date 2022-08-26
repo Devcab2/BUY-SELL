@@ -26,7 +26,7 @@ const getUserEmail = (email) => {
 };
 
 // Get user from database given their id
-const getUserWithId = function(id) {
+const getUserWithId = function (id) {
   let dbQuery = ` SELECT * FROM users WHERE id = $1;`;
   let value = [id];
   return pool
@@ -92,7 +92,6 @@ const bookPriceFilters = (minPrice, maxPrice) => {
 
 // Add new book into database by admin users(userid will take from the user cookie we stored and passing in)(we dont need book.id or images links so only 9 values in the objects)
 const addNewBooks = (userid, books) => {
-
   if (userid === 2 || userid === 3) {
     const value = [
       userid,
@@ -117,7 +116,7 @@ const addNewBooks = (userid, books) => {
         return res.rows[0];
       })
       .catch((err) => {
-        console.log("error inserting new book",err.message);
+        console.log("error inserting new book", err.message);
       });
   } else {
     console.log(`you can only add books as seller`);
@@ -126,17 +125,16 @@ const addNewBooks = (userid, books) => {
 };
 
 //Add favorite will return object with the book user clicked
-const addNewFav = (userid) => {
-  const favBook = getAllBooks().then((res) => {
-    let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
-    const value = [userid, res[0].id];
-    return pool
-      .query(dbQuery, value)
-      .then((res) => res.rows)
-      .catch((err) => {
-        console.log(err.message);
-      });
-  });
+const addNewFav = (userId, bookId) => {
+  let dbQuery = `INSERT INTO favourites ('user_id','book_id') VALUES ($1, $2) RETURNING *;`;
+  const value = [userId, bookId];
+  return pool
+    .query(dbQuery, value)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+
   return favBook;
 };
 
@@ -187,6 +185,22 @@ const getConversationWithId = (id) => {
     .catch((err) => console.log(err.message));
 };
 
+const favBookPerUser = (userId) => {
+  return pool
+    .query(
+      `SELECT f.user_id as userId, b.book_title,b.price,b.year_of_publication,b.genre,b.rating, b.image_url_s FROM favourites f JOIN books b ON b.id = f.book_id WHERE f.id = $1;`,
+      [userId]
+    )
+    .then((res) => {
+      if (res.rows) {
+        return res.rows;
+      } else {
+        return null;
+      }
+    })
+    .catch((err) => console.log(err.message));
+};
+
 module.exports = {
   getUserEmail,
   bookFilters,
@@ -198,4 +212,5 @@ module.exports = {
   addNewFav,
   getConversationWithId,
   getUserWithId,
+  favBookPerUser,
 };
