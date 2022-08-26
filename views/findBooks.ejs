@@ -35,26 +35,27 @@
       <div class="bodyContain">
         <ul class="booklist">
           <% for (const book of books) { %>
-            <li class="booklistItems">
-              <%= book.bookid %>
-                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                    <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>"/>
-                    <div class="book-titles">
-                      <p><%=book.book_title%></p>
-                    </div>
-                    <div id="bookOptions">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                      <form method="get" action="/api/conversations/:id">
-                        <button class="iconSubmit" type="submit">
-                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                      </button>
-                      </form>
+          <li class="booklistItems">
+            <%= book.bookid %>
+            <i class="fa fa-info-circle" aria-hidden="true"></i>
+            <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
+            <div class="book-titles">
+              <p><%=book.book_title%></p>
+            </div>
+            <div id="bookOptions">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              <i class="fa fa-commenting-o" aria-hidden="true"></i>
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <i class="fa fa-star-o" aria-hidden="true"></i>
+              <!-- <form method="post" action="/...">
+                <button type="submit">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                </button>
+              </form> -->
+            </div>
+            <% } %>
+          </li>
 
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </div>
-                <% } %>
-            </li>
         </ul>
       </div>
     </main>

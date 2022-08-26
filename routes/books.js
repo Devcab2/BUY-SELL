@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const {  addNewBooks, getAllBooks, getUserWithId } = require("../db/server/database");
+const {
+  addNewBooks,
+  getAllBooks,
+  getUserWithId,
+} = require("../db/server/database");
 
 module.exports = () => {
   router.get("/", (req, res) => {
@@ -12,7 +16,7 @@ module.exports = () => {
             const tempVars = {
               user,
               books,
-              userId
+              userId,
             };
             return res.render("findBooks", tempVars);
           })
