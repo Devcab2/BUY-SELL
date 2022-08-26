@@ -73,9 +73,9 @@ const bookFilters = (genre) => {
 };
 
 // Get books with the price range(we will passing in the hardcode price for each price tags)
-const bookPriceFilters = (minPrice, maxPrice) => {
-  let dbQuery = `SELECT * FROM books WHERE price >= $1 AND price <= $2;`;
-  const value = [minPrice, maxPrice];
+const bookPriceFilters = (maxPrice) => {
+  let dbQuery = `SELECT * FROM books WHERE price <= $1;`;
+  const value = [maxPrice];
   return pool
     .query(dbQuery, value)
     .then((res) => {

@@ -20,6 +20,7 @@ module.exports = (db) => {
             })
             .catch((e) => {
               console.log(e);
+              res.redirect("/home");
             });
         }
       })
@@ -40,7 +41,7 @@ module.exports = (db) => {
       })
       .catch((e) => {
         console.log(e);
-        res.redirect("/");
+        res.redirect("/home");
       });
   });
   return router;
