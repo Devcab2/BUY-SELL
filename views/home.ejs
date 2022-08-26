@@ -1,72 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta Information -->
-    <title>Home Page</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+<head>
+  <!-- Meta Information -->
+  <title>Home Page</title>
 
-    <!-- External CSS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css"/>
+  <!-- External CSS -->
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
 
 
-    <!-- JS -->
+  <!-- JS -->
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
-      <!-- Add icon library -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <body>
+</head>
 
-    <%- include('partials/_slidingMenu') %>
+<body>
+  <header>
+    <%- include('partials/_header') %>
+  </header>
 
-    <header>
-      <%- include('partials/_header') %>
-     </header>
+  <main>
+    <div class="advertisement">
 
-    <main>
-      <div class="advertisement">
+      <p> Advertisement or Text Here... </p>
 
-       <p> Advertisement or Text Here... </p>
+    </div>
 
-      </div>
+    <div class="bodyContain">
+      <ul class="booklist">
+        <li class="booklistItems">
+          <a href="">
+            <img src="http://images.amazon.com/images/P/0195153448.01.THUMBZZZ.jpg" alt="Classical Mythology">
+            <p>Classical Mythology</p>
+          </a>
+        </li>
+        <li class="booklistItems">
+          <a href="">
+            <img src="http://images.amazon.com/images/P/0002005018.01.THUMBZZZ.jpg" alt="Clara Callan">
+            <p>Clara Callan</p>
+          </a>
+        </li>
+        <li class="booklistItems">
+          <a href="">
+            <img src="http://images.amazon.com/images/P/0393045218.01.THUMBZZZ.jpg" alt="The Mummies of Urumchi">
+            <p>The Mummies of Urumchi</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    <%- include('partials/_footer') %>
+  </footer>
+</body>
 
-      <div class="bodyContain">
-        <ul class="booklist">
-          <li class="booklistItems">
-            <a href="">
-              <img src="http://images.amazon.com/images/P/0195153448.01.THUMBZZZ.jpg" alt="Classical Mythology">
-             <p>Classical Mythology</p>
-             </a>
-            </li>
-           <li class="booklistItems">
-             <a href="">
-               <img src="http://images.amazon.com/images/P/0002005018.01.THUMBZZZ.jpg"
-                alt="Clara Callan">
-              <p>Clara Callan</p>
-            </a>
-           </li>
-           <li class="booklistItems">
-            <a href="">
-               <img src="http://images.amazon.com/images/P/0393045218.01.THUMBZZZ.jpg"
-               alt="The Mummies of Urumchi">
-              <p>The Mummies of Urumchi</p>
-            </a>
-          </li>
-        </ul>
-       </div>
-    </main>
-    <footer>
-      <%- include('partials/_footer') %>
-    </footer>
-  </body>
 </html>
