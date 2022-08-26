@@ -134,8 +134,6 @@ const addNewFav = (userId, bookId) => {
     .catch((err) => {
       console.log(err.message);
     });
-
-  return favBook;
 };
 
 //Delete books from the books table, use with getAllBooks function after to get the refresh list
@@ -209,11 +207,12 @@ const getConversationMessages = (id) => {
 const favBookPerUser = (userId) => {
   return pool
     .query(
-      `SELECT f.user_id as userId, b.book_title,b.price,b.year_of_publication,b.genre,b.rating, b.image_url_s FROM favourites f JOIN books b ON b.id = f.book_id WHERE f.id = $1;`,
+      `SELECT f.user_id as userId, b.book_title,b.price,b.year_of_publication,b.genre,b.rating, b.image_url_s FROM favourites f JOIN books b ON b.id = f.book_id WHERE f.user_id = $1;`,
       [userId]
     )
     .then((res) => {
       if (res.rows) {
+        console.log(res.rows);
         return res.rows;
       } else {
         return null;
