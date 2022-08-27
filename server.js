@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -22,6 +23,7 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(bodyParser.json());
 
 app.use(
   "/styles",
@@ -40,7 +42,7 @@ app.use(express.static("public"));
 const userLogin = require("./routes/login");
 const favPage = require("./routes/favPage");
 const book = require("./routes/books");
-const conversationsRoutes = require("./routes/conversations");
+const conversations = require("./routes/conversations");
 const userLogout = require("./routes/userLogout");
 const addBook = require("./routes/addBook");
 const filterGenre = require("../BUY-SELL/routes/filterGenre");
@@ -53,7 +55,7 @@ const purchaseMessage = require("./routes/purchaseMessage");
 // Note: Feel free to replace the example routes below with your own
 
 app.use("/api/login", userLogin(db));
-app.use("/api/conversations", conversationsRoutes(db));
+app.use("/api/conversations", conversations(db));
 app.use("/api/logout", userLogout(db));
 app.use("/api/favourites", favPage(db));
 app.use("/api/books", book(db));

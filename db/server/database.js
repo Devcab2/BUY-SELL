@@ -170,7 +170,7 @@ const singleBook = (bookid) => {
 
 //Access page for a specific conversation.
 
-const getUserConversations = (id) => {
+const getAllUserConversations = (id) => {
   return pool
     .query(`SELECT conversations.id AS conversation_ID
     FROM conversations
@@ -184,9 +184,9 @@ const getUserConversations = (id) => {
       }
     })
     .catch((err) => console.log(err.message));
-}
+};
 
-const getConversationMessages = (id) => {
+const getMessagesForSpecificConversation = (id) => {
   return pool
     .query(`
     SELECT books.user_id AS seller, books.book_title AS book, message
@@ -237,6 +237,44 @@ const favDelete = (userid, bookid) => {
     .catch((err) => console.log(err.message));
 };
 
+const createConversation = (bookId) => {
+  return pool
+    .query(`
+      INSERT INTO conversations (book_id)
+      VALUES ($1)
+      RETURNING *;`, [bookId]
+    )
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const getBookSellerName = (bookUserId) => {
+  return pool
+    .query(`
+    SELECT users.name AS seller
+    FROM books JOIN users ON users.id = books.user_id
+    WHERE books.user_id = $1;`, [bookUserId])
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const createMessage = (message) => {
+  return pool
+    .query(`
+      INSERT INTO messages (conversation_id, user_id, message)
+      VALUES ($1, $2, $3)
+      RETURNING *;`, [message]
+    )
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   getUserEmail,
   bookFilters,
@@ -246,9 +284,11 @@ module.exports = {
   bookDelete,
   singleBook,
   addNewFav,
-  getUserConversations,
+  getAllUserConversations,
   getUserWithId,
   favBookPerUser,
-  getConversationMessages,
-  favDelete
+  favDelete,
+  getMessagesForSpecificConversation,
+  createConversation,
+  getBookSellerName
 };

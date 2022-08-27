@@ -52,7 +52,10 @@
                       </button>
                     </form>
                     <% } %>
-                      <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                    <form method="POST" action="/api/conversations/<%= book.id %>">
+                      <button type="submit">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                      </button>
                       <form method="GET" action="/api/purchaseMessage">
                       <button type="submit">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -64,9 +67,7 @@
                         </button>
                       </form>
                 </div>
-                <% } %>
             </li>
-
         </ul>
       </div>
     </main>
