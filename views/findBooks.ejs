@@ -33,7 +33,7 @@
           <% for (const book of books) { %>
           <li class="booklistItems">
             <%= book.bookid %>
-            <form method="POST" action="">
+            <form method="POST" action="/api/books/book/<%= book.id %>">
               <button type="submit">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
               </button>
