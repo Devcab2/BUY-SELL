@@ -170,12 +170,13 @@ const singleBook = (bookid) => {
 
 //Access page for a specific conversation.
 
-const getUserConversations = (id) => {
+const getAllUserConversations = (id) => {
   return pool
     .query(`SELECT conversations.id AS conversation_ID
     FROM conversations
     JOIN messages ON conversations.id = messages.convers_id
-    WHERE messages.user_id = $1;`, [id])
+    JOIN users ON users.id = messages.user_id
+    WHERE users.id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
         return res.rows;
@@ -184,16 +185,17 @@ const getUserConversations = (id) => {
       }
     })
     .catch((err) => console.log(err.message));
-}
+};
 
-const getConversationMessages = (id) => {
+const getDetailsForSpecificConversation = (id) => {
   return pool
     .query(`
-    SELECT books.user_id AS seller, books.book_title AS book, message
+    SELECT users.name AS seller, books.book_title AS book, message
     FROM messages
     JOIN conversations ON messages.convers_id = conversations.id
     JOIN books on conversations.book_id = books.id
-    WHERE messages.user_id = $1;`, [id])
+    JOIN users on users.id = books.user_id
+    WHERE conversations.id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
         return res.rows;
@@ -237,6 +239,45 @@ const favDelete = (userid, bookid) => {
     .catch((err) => console.log(err.message));
 };
 
+const createConversation = (bookId) => {
+  return pool
+    .query(`
+      INSERT INTO conversations (book_id)
+      VALUES ($1)
+      RETURNING *;`, [bookId]
+    )
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+const getBookSellerName = (bookUserId) => {
+  return pool
+    .query(`
+    SELECT users.name AS seller
+    FROM books JOIN users ON users.id = books.user_id
+    WHERE books.user_id = $1;`, [bookUserId])
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+
+const createMessage = (message) => {
+  return pool
+    .query(`
+      INSERT INTO messages (conversation_id, user_id, message)
+      VALUES ($1, $2, $3)
+      RETURNING *;`, [message]
+    )
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 module.exports = {
   getUserEmail,
   bookFilters,
@@ -246,9 +287,11 @@ module.exports = {
   bookDelete,
   singleBook,
   addNewFav,
-  getUserConversations,
+  getAllUserConversations,
   getUserWithId,
   favBookPerUser,
-  getConversationMessages,
-  favDelete
+  favDelete,
+  getDetailsForSpecificConversation,
+  createConversation,
+  getBookSellerName
 };

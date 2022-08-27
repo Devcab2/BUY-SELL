@@ -1,35 +1,29 @@
 const express = require('express');
 const router  = express.Router();
-const { getUserConversations, getConversationMessages } = require("../db/server/database");
+const { createConversation, getAllUserConversations, getDetailsForSpecificConversation, getBookSellerName } = require("../db/server/database");
 
 module.exports = () => {
-  router.get("/:id", (req, res) => {
+  router.post("/:bookId", (req, res) => {
     const userId = req.cookies.userId;
-    console.log("userID:", userId);
-    getUserConversations(userId)
-      .then((conversations) => {
-        console.log("conversations:", conversations);
-
-        getConversationMessages(conversations)
-          .then((messages) => {
-            const tempVars = {messages, userId};
-            console.log("messages:", messages);
-            res.render("conversations", tempVars);
-          })
-          .catch((err) => {
-            console.log(err);
-            res.redirect("/findBooks");
-          });
-
-
-
-
-
+    const bookId = req.params.bookId;
+    createConversation(bookId)
+      .then((conversation) => {
+        const tempVars = { userId, bookId, conversation};
+        res.render("newConversation", tempVars);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.redirect("/findBooks");
       });
   });
-  // router.get("/", (req, res) => {
-  //   res.render("conversations");
-  // });
+
+  router.post("/", (req, res) => {
+    const userId = req.cookies.userId;
+    const message = req.body;
+    console.log("message:", message);
+    const tempVars = {message, userId};
+    res.render("conversations", tempVars);
+  });
 
   return router;
 };
