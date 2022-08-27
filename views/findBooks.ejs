@@ -32,8 +32,12 @@
         <ul class="booklist">
           <% for (const book of books) { %>
             <li class="booklistItems">
-              <% const bookString=JSON.stringify(book); %>
-                <button class="fa fa-info-circle" onclick="alert('<%=bookString%>')"></button>
+              <!-- <% const bookString=JSON.stringify(book); %>
+                <button class="fa fa-info-circle" onclick="alert('<%=bookString%>')"></button> -->
+                <form method="POST" action="/api/books/book/<%= book.id %>">
+                  <button type="submit">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  </button></form>
                 <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
                 <div class="book-titles">
                   <p>
