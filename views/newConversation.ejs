@@ -3,7 +3,7 @@
 
   <head>
     <!-- Meta Information -->
-    <title>Conversations</title>
+    <title>New Conversation</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -31,17 +31,13 @@
     </header>
 
     <main>
-        <h3>Conversation with seller</h3>
-          <p> Your Message : <%= message.newMessage %> </p>
-        <form action="/api/conversations" method="post">
-          <label for="newMessage">Message:</label>
-          <textarea id="newMessage" name="newMessage"></textarea>
-          <button type="submit">Send your message</button>
-        </form>
-
-
-
-    </main>
+      <h3>Start conversation with seller</h3>
+      <form action="/api/conversations" method="post">
+        <label for="newMessage">Message:</label>
+        <textarea id="newMessage" name="newMessage"></textarea>
+        <button type="submit">Send your message</button>
+      </form>
+  </main>
 
     <footer>
       <%- include('partials/_footer') %>
