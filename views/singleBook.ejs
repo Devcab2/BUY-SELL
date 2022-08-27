@@ -1,36 +1,44 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Purchase Message</title>
-    <link rel="stylesheet" href="/styles/purchaseMessage.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
     <link rel="stylesheet" href="/styles/findBooks.css" type="text/css" />
     <link rel="stylesheet" href="/styles/singleBook.css" type="text/css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
-    </style>
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
     <!-- Add icon library -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <title>Single Book</title>
   </head>
-  <body class="purchaseResponse">
-    <script>
-      setTimeout(() => {
-        window.location.href = window.location.origin + "/api/books";
-      }, 5000);
-    </script>
-    <div class="container">
-      <div class="neon">thanks for Purchase</div>
-      <div class="flux">Thanks for shopping with Dream TXT.</div>
-    </div>
+  <body>
+    <%- include('partials/_slidingMenu') %>
+    <header><%- include('partials/_header') %></header>
+    <main>
+      <div class="bookbody">
+        <div class="booktitle"><p><%=book.book_title%></p></div>
+        <div class="bookimg">
+          <img
+            src="<%=book.image_url_l%>
+          "
+            alt="large book image"
+          />
+        </div>
+        <div class="bookprice">Price: $<%=book.price%></div>
+        <div class="bookdisc">
+          <p><%=book.description%></p>
+        </div>
+      </div>
+    </main>
     <footer><%- include('partials/_footer') %></footer>
   </body>
 </html>
