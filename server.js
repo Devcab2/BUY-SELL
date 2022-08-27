@@ -50,6 +50,7 @@ const filterPrice = require("../BUY-SELL/routes/filterPrice");
 const bookDelete = require("./routes/deleteBook");
 const favDelete = require("./routes/favDelete");
 const purchaseMessage = require("./routes/purchaseMessage");
+const singleBook = require("./routes/singleBook");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -65,6 +66,7 @@ app.use("/api/books/price", filterPrice(db));
 app.use("/api/deleteBook", bookDelete(db));
 app.use("/api/favDelete", favDelete(db));
 app.use("/api/purchaseMessage", purchaseMessage());
+app.use("/api/books/book", singleBook(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
