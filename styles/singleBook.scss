@@ -1,0 +1,23 @@
+.bookbody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2em;
+}
+.booktitle {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.bookprice {
+  margin-top: 1rem;
+}
+.bookdisc {
+  font-size: 1.5em;
+  width: 33em;
+  line-break: anywhere;
+  line-height: 1.5rem;
+  word-wrap: break-word;
+  margin-top: 1rem;
+}
