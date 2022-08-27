@@ -24,6 +24,7 @@ align-items: center;
 font-size: x-large;
 font-weight: 500;
 padding-left: 2em;
+padding-top: 15px;
 }
 
 .storeName{
@@ -200,4 +201,12 @@ list-style: none;
     margin: 0 auto;
   }
 }
+
+.welcomeMessage{
+  font-family: Tahoma;
+  margin-left: 60px;
+  font-weight: 800;
+  font-style: italic;
+}
+
 
