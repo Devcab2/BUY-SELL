@@ -175,7 +175,8 @@ const getAllUserConversations = (id) => {
     .query(`SELECT conversations.id AS conversation_ID
     FROM conversations
     JOIN messages ON conversations.id = messages.convers_id
-    WHERE messages.user_id = $1;`, [id])
+    JOIN users ON users.id = messages.user_id
+    WHERE users.id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
         return res.rows;
@@ -186,14 +187,15 @@ const getAllUserConversations = (id) => {
     .catch((err) => console.log(err.message));
 };
 
-const getMessagesForSpecificConversation = (id) => {
+const getDetailsForSpecificConversation = (id) => {
   return pool
     .query(`
-    SELECT books.user_id AS seller, books.book_title AS book, message
+    SELECT users.name AS seller, books.book_title AS book, message
     FROM messages
     JOIN conversations ON messages.convers_id = conversations.id
     JOIN books on conversations.book_id = books.id
-    WHERE messages.user_id = $1;`, [id])
+    JOIN users on users.id = books.user_id
+    WHERE conversations.id = $1;`, [id])
     .then((res) => {
       if (res.rows) {
         return res.rows;
@@ -262,6 +264,7 @@ const getBookSellerName = (bookUserId) => {
     });
 };
 
+
 const createMessage = (message) => {
   return pool
     .query(`
@@ -288,7 +291,7 @@ module.exports = {
   getUserWithId,
   favBookPerUser,
   favDelete,
-  getMessagesForSpecificConversation,
+  getDetailsForSpecificConversation,
   createConversation,
   getBookSellerName
 };

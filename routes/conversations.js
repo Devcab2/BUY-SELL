@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { createConversation, getAllUserConversations, getMessagesForSpecificConversation, getBookSellerName } = require("../db/server/database");
+const { createConversation, getAllUserConversations, getDetailsForSpecificConversation, getBookSellerName } = require("../db/server/database");
 
 module.exports = () => {
   router.post("/:bookId", (req, res) => {
@@ -19,30 +19,51 @@ module.exports = () => {
   router.get("/newConversation/:bookId/:conversation", (req, res) => {
     const userId = req.cookies.userId;
     const bookId = req.params.bookId;
-    const conversation = req.params.conversation;
+    const conversationId = req.params.conversation;
+    console.log("purchasingUserId:", userId);
     console.log("bookId:", bookId);
-    console.log("newConversation:", conversation);
+    console.log("conversationId:", conversationId);
     getBookSellerName(bookId)
       .then((seller) => {
-        const tempVars = { userId, seller: seller.seller, bookId, conversation};
-        console.log("seller:",seller.seller);
-        res.render("newConversation", tempVars);
+        console.log("seller:", seller);
+        getAllUserConversations(userId)
+          .then((conversationsArray) => {
+            for (const conversation of conversationsArray) {
+              console.log("conversation:", conversation);
+              getDetailsForSpecificConversation(conversation.conversation_id)
+                .then((details) => {
+                  console.log("conversations:", conversationsArray);
+                  console.log("details:", details);
+                  const tempVars = { userId, seller: seller.seller, bookId, conversations: conversationsArray, details };
+                  console.log("seller:",seller.seller);
+                  res.render("conversations", tempVars);
+                })
+                .catch((err) => {
+                  console.log(err);
+                  res.redirect("/api/books");
+                });
+            }
+
+          })
+          .catch((err) => {
+            console.log(err);
+            res.redirect("/api/books");
+          });
       })
       .catch((err) => {
         console.log(err);
-        res.redirect("/findBooks");
+        res.redirect("/api/books");
       });
   });
 
   router.post("/", (req, res) => {
     const userId = req.cookies.userId;
-    console.log("body:", req.body);
-    const tempVars = { userId };
-    res.render("conversations", tempVars);
+    const message = req.body;
+    console.log("userID & message:", userId, message.newMessage);
   });
 
 
-  router.get("/", (req, res) => {
+  router.get("/:userId", (req, res) => {
     const userId = req.cookies.userId;
     console.log("userID:", userId);
     getAllUserConversations(userId)

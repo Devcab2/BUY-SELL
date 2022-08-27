@@ -31,15 +31,24 @@
     </header>
 
     <main>
-      </section>
-        <section id="messagesContainer">
+      </section id="conversationContainer">
+
+          <% for (const conversation of conversations) { %>
+            <article>
+              <h3>Conversation with </h3>
+            </article>
+          <% } %>
       </section>
 
-      <form action="/api/conversations" method="post">
-        <label for="newMessage">Message:</label>
-        <textarea id="newMessage" name="newMessage"></textarea>
-        <button type="submit">Send your message</button>
-      </form>
+
+        <h3>Start conversation with <%= seller %></h3>
+        <form action="/api/conversations" method="post">
+          <label for="newMessage">Message:</label>
+          <textarea id="newMessage" name="newMessage"></textarea>
+          <button type="submit">Send your message</button>
+        </form>
+
+
 
     </main>
 
