@@ -1,79 +1,63 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- External CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/findBooks.css" type="text/css" />
 
-  <!-- External CSS -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/slidingMenu.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/findBooks.css" type="text/css" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Add icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-  <!-- Add icon library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Find Books</title>
+  </head>
 
-  <title>Find Books</title>
-</head>
+  <body>
+    <%- include('partials/_slidingMenu') %>
 
-<!-- Add icon library -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
-<body>
-  <%- include('partials/_slidingMenu') %>
-
-    <header>
-      <%- include('partials/_header') %>
-    </header>
+    <header><%- include('partials/_header') %></header>
 
     <main>
       <div class="bodyContain">
         <ul class="booklist">
           <% for (const book of books) { %>
-            <li class="booklistItems">
-              <% const bookString=JSON.stringify(book); %>
-                <button class="fa fa-info-circle" onclick="alert('<%=bookString%>')"></button>
-                <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
-                <div class="book-titles">
-                  <p>
-                    <%=book.book_title%>
-                  </p>
-                </div>
-                <div id="bookOptions">
-                  <% if (user.user_type==="admin" ) { %>
-                    <form method="POST" action="/api/deleteBook/<%= book.id %>">
-                      <button type="submit">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      </button>
-                    </form>
-                    <% } %>
-                      <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                      <form method="GET" action="/api/purchaseMessage">
-                      <button type="submit">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                      </button>
-                      </form>
-                      <form method="POST" action="/api/favourites/<%= book.id %>">
-                        <button type="submit">
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </button>
-                      </form>
-                </div>
-                <% } %>
-            </li>
-
+          <li class="booklistItems">
+            <%= book.bookid %>
+            <form method="POST" action="">
+              <button type="submit">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+              </button>
+            </form>
+            <img src="<%=book.image_url_s %>" alt="<%=book.book_title%>" />
+            <div class="book-titles">
+              <p><%=book.book_title%></p>
+            </div>
+            <div id="bookOptions">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+              <i class="fa fa-commenting-o" aria-hidden="true"></i>
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <form method="POST" action="/api/favourites/<%= book.id %>">
+                <button type="submit">
+                  <i class="fa fa-star-o" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+            <% } %>
+          </li>
         </ul>
       </div>
     </main>
 
-    <footer>
-      <%- include('partials/_footer') %>
-    </footer>
-</body>
-
+    <footer><%- include('partials/_footer') %></footer>
+  </body>
 </html>
