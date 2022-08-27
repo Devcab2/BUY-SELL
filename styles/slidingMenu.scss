@@ -52,7 +52,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
-  line-height: 28pt;
+  line-height: 18pt;
 }
 
 .price{
@@ -63,9 +63,24 @@
   width:100%;
   justify-content: center;
   align-items: baseline;
-  line-height: 28pt;
+  line-height: 18pt;
 }
 
 .gap{
-  height: 30px;
+  height: 20px;
+}
+ .priceFilter{
+   width: 100%;
+   font-weight: 400;
+   font-family: Tahoma;
+}
+
+.categoryFilter{
+  width: 100%;
+  font-weight: 400;
+  font-family: Tahoma;
+}
+
+ button{
+  background-color: orchid;
 }
