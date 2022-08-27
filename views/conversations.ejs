@@ -31,17 +31,8 @@
     </header>
 
     <main>
-      </section id="conversationContainer">
-
-          <% for (const conversation of conversations) { %>
-            <article>
-              <h3>Conversation with </h3>
-            </article>
-          <% } %>
-      </section>
-
-
-        <h3>Start conversation with <%= seller %></h3>
+        <h3>Conversation with seller</h3>
+          <p> Your Message : <%= message.newMessage %> </p>
         <form action="/api/conversations" method="post">
           <label for="newMessage">Message:</label>
           <textarea id="newMessage" name="newMessage"></textarea>
